@@ -1,0 +1,34 @@
+<h1>Url Shortener</h1>
+
+<%= form_for :url do |u| %>
+  URL: <%= u.text_field :url %><br />
+  <br>
+  <%= u.submit "Parse URL" %>
+<% end %>
+<br>
+<br>
+
+<h2>Most visited URLs</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Url</th>
+      <th>Short url</th>
+      <th>Visits</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @urls.each do |url| %>
+      <tr>
+        <td><%= url.url %></td>
+        <td><%= url.short_url %></td>
+        <td><%= url.visits %></td>
+        <td><%= link_to 'Show', url %></td>
+        <td><%= link_to 'Edit', edit_url_path(url) %></td>
+        <td><%= link_to 'Destroy', url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
