@@ -1,5 +1,5 @@
 class UrlsController < ApplicationController
-  before_action :set_url, only: %i[ edit update destroy ]
+  before_action :set_url, only: %i[show edit update destroy ]
 
   # GET /urls or /urls.json
   def index
@@ -8,9 +8,6 @@ class UrlsController < ApplicationController
 
   # GET /urls/1 or /urls/1.json
   def show
-    @url = Url.find(params[:id])
-    @url.increment_visits
-    redirect_to @url.url
   end
 
   def redirect
@@ -30,20 +27,22 @@ class UrlsController < ApplicationController
 
   # POST /urls or /urls.json
   def create
+    new_url = url_params[:url]
+    if !UrlsHelper.valid_url(new_url)
+      return render json: { errors: "Invalid URL" }, status: 422
+    end
+
     @url = Url.find_or_create_by(url: url_params[:url])
 
     if @url.short_url.nil?
       @url.set_short_url
     end
 
-    respond_to do |format|
-      if @url.save
-        format.html { redirect_to url_url(@url), notice: "Url was successfully created." }
-        format.json { render :show, status: :created, location: @url }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @url.errors, status: :unprocessable_entity }
-      end
+    if @url.save
+      @url.increment_visits
+      redirect_to @url.url
+    else
+      render json: @url.errors, status: 422
     end
   end
 

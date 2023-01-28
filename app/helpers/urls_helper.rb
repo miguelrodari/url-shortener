@@ -2,6 +2,7 @@ module UrlsHelper
   ALPHABET = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".split(//)
   # In order to avoid having an url that will conflict with the routing
   INVALID_URLS = ['urls']
+  VALID_SCHEMES = %w[http https]
 
   def self.bijective_encode(i)
     # from http://refactormycode.com/codes/125-base-62-encoding
@@ -23,5 +24,10 @@ module UrlsHelper
     base = ALPHABET.length
     s.each_char { |c| i = i * base + ALPHABET.index(c) }
     i
+  end
+
+  # This is an extremlly simple validation
+  def self.valid_url(value)
+    URI::DEFAULT_PARSER.make_regexp(VALID_SCHEMES).match?(value)
   end
 end
