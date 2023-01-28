@@ -6,26 +6,12 @@ class UrlsController < ApplicationController
     @urls = Url.get_top_visits
   end
 
-  # GET /urls/1 or /urls/1.json
-  def show
-  end
-
   def redirect
     @url = Url.find_by(short_url: params[:short_url])
     @url.increment_visits
     redirect_to @url.url
   end
 
-  # GET /urls/new
-  def new
-    @url = Url.new
-  end
-
-  # GET /urls/1/edit
-  def edit
-  end
-
-  # POST /urls or /urls.json
   def create
     new_url = url_params[:url]
     if !UrlsHelper.valid_url(new_url)
@@ -56,16 +42,6 @@ class UrlsController < ApplicationController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @url.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /urls/1 or /urls/1.json
-  def destroy
-    @url.destroy
-
-    respond_to do |format|
-      format.html { redirect_to urls_url, notice: "Url was successfully destroyed." }
-      format.json { head :no_content }
     end
   end
 
