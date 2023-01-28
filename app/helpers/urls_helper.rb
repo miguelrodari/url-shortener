@@ -9,7 +9,7 @@ module UrlsHelper
     return ALPHABET[0] if i == 0
     s = ''
     base = ALPHABET.length
-    while i > 0 || INVALID_URLS.include? s
+    while i > 0 || INVALID_URLS.include?(s) do
       s << ALPHABET[i.modulo(base)]
       i /= base
     end
