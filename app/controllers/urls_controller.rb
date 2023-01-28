@@ -3,14 +3,13 @@ class UrlsController < ApplicationController
 
   # GET /urls or /urls.json
   def index
-    @urls = Url.all
+    @urls = Url.get_top_visits
   end
 
   # GET /urls/1 or /urls/1.json
   def show
     @url = Url.find(params[:id])
-    @url.increment(:visits, 1)
-    @url.save!
+    @url.increment_visits
     redirect_to @url.url
   end
 
@@ -69,6 +68,6 @@ class UrlsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def url_params
-      params.require(:url).permit(:url, :short_url, :visits, :title)
+      params.require(:url).permit(:url, :title)
     end
 end
