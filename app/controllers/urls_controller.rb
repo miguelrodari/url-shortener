@@ -24,7 +24,11 @@ class UrlsController < ApplicationController
 
   # POST /urls or /urls.json
   def create
-    @url = Url.new(url_params)
+    @url = Url.find_or_create_by(url: url_params[:url])
+
+    if @url.short_url.nil?
+      @url.set_short_url
+    end
 
     respond_to do |format|
       if @url.save

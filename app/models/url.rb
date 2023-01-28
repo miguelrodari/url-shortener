@@ -9,4 +9,8 @@ class Url < ApplicationRecord
     self.increment(:visits, 1)
     self.save!
   end
+
+  def set_short_url
+    self.short_url = UrlsHelper.bijective_encode(id)
+  end
 end
