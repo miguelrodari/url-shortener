@@ -13,6 +13,12 @@ class UrlsController < ApplicationController
     redirect_to @url.url
   end
 
+  def redirect
+    @url = Url.find_by(short_url: params[:short_url])
+    @url.increment_visits
+    redirect_to @url.url
+  end
+
   # GET /urls/new
   def new
     @url = Url.new
