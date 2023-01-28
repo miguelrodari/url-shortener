@@ -23,10 +23,16 @@ Things you may want to cover:
 * Navigate to `localhost:3000/urls`
 
 
-
 # How to test
 
-* ...
+* Added tests for the model, controller and helper:
+
+* `bin/rails test test/models/url_test.rb`
+
+* `bin/rails test test/controllers/urls_controller_test.rb  `
+
+* `bin/rails test test/helpers/urls_helper_test.rb`
+
 
 # Additional notes
 

@@ -18,7 +18,7 @@ class UrlsController < ApplicationController
       return render json: { errors: "Invalid URL" }, status: 422
     end
 
-    @url = Url.find_or_create_by(url: url_params[:url])
+    @url = Url.find_or_create_by(url: new_url)
 
     if @url.short_url.nil?
       @url.set_short_url

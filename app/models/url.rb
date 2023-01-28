@@ -1,4 +1,5 @@
 class Url < ApplicationRecord
+  validates :url, presence: true
   MAX_RESULTS = 100
 
   def self.get_top_visits
