@@ -228,7 +228,7 @@ DEPENDENCIES
   capybara (>= 2.15)
   jbuilder (~> 2.7)
   listen (~> 3.2)
-  nokogiri
+  nokogiri (~> 1.14)
   open-uri
   puma (~> 4.1)
   rails (~> 6.0.6, >= 6.0.6.1)
