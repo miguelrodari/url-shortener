@@ -22,6 +22,8 @@ Things you may want to cover:
 
 * Navigate to `localhost:3000/urls`
 
+* For the crawler, run `bundle exec rake crawler:crawl`
+
 
 # How to test
 
@@ -37,3 +39,4 @@ Things you may want to cover:
 # Additional notes
 
 * The URL shortener algorithim is based on https://stackoverflow.com/questions/742013/how-do-i-create-a-url-shortener and using the impelementaiton for ruby: https://gist.github.com/zumbojo/1073996. Additional validation were made.
+* Using OpenURI https://github.com/ruby/open-uri and Nokogiri https://nokogiri.org/ for the crawler.
