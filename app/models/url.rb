@@ -2,9 +2,7 @@ class Url < ApplicationRecord
   validates :url, presence: true
   MAX_RESULTS = 100
 
-  def self.get_top_visits
-    Url.order('visits DESC').limit(MAX_RESULTS)
-  end
+  scope :top_visits,-> { order('visits DESC').limit(MAX_RESULTS) }
 
   def increment_visits
     self.increment(:visits, 1)

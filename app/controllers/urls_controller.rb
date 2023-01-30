@@ -3,7 +3,7 @@ class UrlsController < ApplicationController
 
   # GET /urls or /urls.json
   def index
-    @urls = Url.get_top_visits
+    @urls = Url.top_visits
   end
 
   def redirect
